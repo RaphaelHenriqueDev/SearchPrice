@@ -30,16 +30,22 @@ export default class Utils {
     if (!conditional || !Array.isArray(results)) return results
 
     const parsed = results.map((item) => {
-      const price = parseFloat(
-        item.price.replace(/[^\d,]/g, "").replace(",", ".")
-      )
+      const price =
+        typeof item.price === "string"
+          ? parseFloat(
+              item.price
+                .replace(/[^\d,]/g, "")
+                .replace(/\./g, "")
+                .replace(",", ".")
+            )
+          : 0
       return { ...item, priceNumber: price }
     })
 
     let sorted
-    if (conditional.toLowerCase() === "mais baratos") {
+    if (conditional.toLowerCase() === "mais_baratos") {
       sorted = parsed.sort((a, b) => a.priceNumber - b.priceNumber)
-    } else if (conditional.toLowerCase() === "mais modestos") {
+    } else if (conditional.toLowerCase() === "mais_modestos") {
       sorted = parsed.sort((a, b) => b.priceNumber - a.priceNumber)
     } else {
       return results
