@@ -5,12 +5,13 @@ import searchRenner from "./sites/renner.js"
 import searchRiachuelo from "./sites/riachuelo.js"
 import searchCea from "./sites/c&a.js"
 import searchAmazon from "./sites/amazon.js"
-  
+
 // Mapeamento dos sites
 const siteHandlers = {
   renner: searchRenner,
   riachuelo: searchRiachuelo,
   cea: searchCea,
+  "c&a": searchCea,
   amazon: searchAmazon,
 }
 

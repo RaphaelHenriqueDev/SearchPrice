@@ -22,7 +22,7 @@ The server will be running at `http://localhost:3000`.
 
 4. **In your browser, enter**
 ```url
-http://localhost:3000/app/storetosearch/theproduct/Mais modestos or Mais baratos
+http://localhost:3000/app/storetosearch/theproduct/mais_modestos or mais_baratos
 ```
 this final param is a conditional means more expensive and cheaper
 
