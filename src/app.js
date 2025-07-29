@@ -16,10 +16,11 @@ const siteHandlers = {
 }
 
 async function execSearch(site, produto, conditional) {
+
   const browser = await Utils.launchBrowser()
   try {
     const [page] = await browser.pages()
-    const handler = siteHandlers[site.toLowerCase()]
+    const handler = siteHandlers[site]
 
     if (!handler) throw new Error("Site não suportado")
 

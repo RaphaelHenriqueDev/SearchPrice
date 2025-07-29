@@ -1,0 +1,46 @@
+<%- include('partials/header.ejs');%>
+<body>
+  <%- include('partials/navbar.ejs');%>
+  <div class="main-content">
+  <h1 class="presentation">Bem vindo ao SearchPrice</h1>
+  <p class="about">Mecânismo de Busca de preços</p>
+  <div class="card-form">
+<form id="appForm" method="GET" onsubmit="updateFormAction(event)">
+    <input type="text" name="site" id="site" placeholder="Site" required />
+    <input
+      type="text"
+      name="produto"
+      id="produto"
+      placeholder="Produto"
+      required
+    />
+    <select name="conditional" id="conditional">
+      <option value="">Condição (opcional)</option>
+      <option value="mais_baratos">Mais Baratos</option>
+      <option value="mais modestos">Mais Modestos</option>
+    </select>
+    <button type="submit">Enviar</button>
+  </form>
+  </div>
+  </div>
+  <%- include('partials/footer.ejs');%>
+</body>
+</html>
+<script>
+  function updateFormAction(event) {
+    event.preventDefault()
+
+    const site = document.getElementById("site").value.trim()
+    const produto = document.getElementById("produto").value.trim()
+    const conditional = document.getElementById("conditional").value.trim()
+
+    let action = `/${encodeURIComponent(site)}/${encodeURIComponent(
+      produto
+    )}`
+    if (conditional) {
+      action += `/${encodeURIComponent(conditional)}`
+    }
+
+    window.location.href = action
+  }
+</script>
