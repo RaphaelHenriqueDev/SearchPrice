@@ -2,11 +2,9 @@ import puppeteer from "puppeteer"
 import Utils from "../utils/Utils.js"
 
 async function searchCea(page, produto, conditional) {
-  await page.goto("https://www.cea.com.br/", { waitUntil: "networkidle2" })
-
-  await page.type(".aa-Input", produto)
-  await page.keyboard.press("Enter")
-
+  await page.goto(`https://www.cea.com.br/al-search/${produto}`, {
+    waitUntil: "load",
+  })
   // Espera os produtos carregarem
   await page.waitForSelector("ol.ais-Hits-list > li.ais-Hits-item", {
     timeout: 10000,

@@ -2,14 +2,17 @@ import puppeteer from "puppeteer"
 import Utils from "../utils/Utils.js"
 
 async function searchAmazon(page, produto, conditional) {
-  await page.goto("https://www.amazon.com.br/", { waitUntil: "networkidle2" })
+  await page.goto(`https://www.amazon.com.br/s?k=${produto}`, {
+    waitUntil: "networkidle2",
+  })
 
-  // const keepBuying = await page.$(".a-button-text")
-  // if (keepBuying) {
-  //   await page.click(".a-button-text")
-  // }
-  await page.type("#twotabsearchtextbox ", produto)
-  await page.keyboard.press("Enter")
+  const keepBuying = await page.$(".a-button-text")
+  if (keepBuying) {
+    await page.click(".a-button-text")
+    await Utils.sleep(2000)
+    await page.type("#twotabsearchtextbox ", produto)
+    await page.keyboard.press("Enter")
+  }
 
   // Espera os produtos carregarem
   await page.waitForSelector('[data-component-type="s-search-result"]', {

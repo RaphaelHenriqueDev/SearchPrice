@@ -2,14 +2,9 @@ import puppeteer from "puppeteer"
 import Utils from "../utils/Utils.js"
 
 async function searchRiachuelo(page, produto, conditional) {
-  await page.goto("https://www.riachuelo.com.br/", {
+  await page.goto(`https://www.riachuelo.com.br/busca?q=${produto}`, {
     waitUntil: "networkidle2",
   })
-
-  const searchElement = "#search-input"
-  await page.type(searchElement, produto)
-  await page.click(searchElement)
-  await page.keyboard.press("Enter")
 
   await page.waitForSelector("ol.MuiGrid-root", { timeout: 10000 })
   await Utils.sleep(3000)

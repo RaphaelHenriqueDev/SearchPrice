@@ -2,20 +2,13 @@ import puppeteer from "puppeteer"
 import Utils from "../utils/Utils.js"
 
 async function searchRenner(page, produto, conditional) {
-  await page.goto("https://www.lojasrenner.com.br", {
-    waitUntil: "load",
+  await page.goto(`https://www.lojasrenner.com.br/b?Ntt=${produto}`, {
+    waitUntil: "networkidle2",
   })
-
-  const searchElement =
-    "#__next > div > div.content > div.header-content > header > div.main-content > div.wrap > div > form > div > input"
-  await page.type(searchElement, produto)
-  await page.click(searchElement)
-  await page.keyboard.press("Enter")
 
   await page.waitForSelector(".ProductBox_productBoxContent__DAUwH", {
     timeout: 10000,
   })
-
   await Utils.scrollToBottom(page)
 
   const results = await page.evaluate(() => {

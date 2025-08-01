@@ -40,7 +40,7 @@ app.get(
   ["/:site/:produto/:conditional", "/:site/:produto"],
   async (req, res) => {
     const { site, produto, conditional } = req.params
-    
+
     try {
       const items = await execSearch(site.toLowerCase(), produto, conditional)
       return res.status(200).render("resultsSearch", { items })

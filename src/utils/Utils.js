@@ -16,7 +16,7 @@ export default class Utils {
       headless: headlessMode,
       ignoreHTTPSErrors: true,
       args: args,
-      slowMo: 50,
+      slowMo: 10,
     })
     return browser
   }

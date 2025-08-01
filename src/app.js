@@ -16,7 +16,6 @@ const siteHandlers = {
 }
 
 async function execSearch(site, produto, conditional) {
-
   const browser = await Utils.launchBrowser()
   try {
     const [page] = await browser.pages()
